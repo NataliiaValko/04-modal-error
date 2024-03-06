@@ -16,8 +16,8 @@ export const App = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [dataForModal, setDataForModal] = useState(null);
+  // const [modalIsOpen, setModalIsOpen] = useState(false);
+  // const [dataForModal, setDataForModal] = useState(null);
 
   useEffect(() => {
     if (!query) return;
@@ -52,36 +52,34 @@ export const App = () => {
     setPage((prev) => prev + 1);
   };
 
-  const openModal = (dataForModal) => {
-    setDataForModal(dataForModal);
-    setModalIsOpen(true);
-    document.body.style.overflow = "hidden";
-  };
+  // const openModal = (dataForModal) => {
+  //   setDataForModal(dataForModal);
+  //   setModalIsOpen(true);
+  //   document.body.style.overflow = "hidden";
+  // };
 
-  const closeModal = () => {
-    setDataForModal("");
-    setModalIsOpen(false);
-    document.body.style.overflow = "auto";
-  };
+  // const closeModal = () => {
+  //   setDataForModal("");
+  //   setModalIsOpen(false);
+  //   document.body.style.overflow = "auto";
+  // };
 
   return (
     <>
       <SearchBar onSubmit={handleSubmit} />
-      {images.length > 0 && !error && (
-        <ImageGallery images={images} onImageClick={openModal} />
-      )}
+      {images.length > 0 && !error && <ImageGallery images={images} />}
 
       {error && (
         <ErrorMessage message="Oops, there was an error, please try reloading" />
       )}
       {images.length > 0 && <LoadMoreBtn onClick={handleLoadMore} />}
-      {modalIsOpen && (
-        <ImageModal
+      {/* {modalIsOpen && (
+          <ImageModal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           dataForModal={dataForModal}
         />
-      )}
+      )} */}
       {loading && <Loader />}
     </>
   );
